@@ -26,10 +26,16 @@ const App = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
 
+  const [inputText, setInputText] = useState("");//creating a state variable to store input
+
+
   const prevCard = () => {
     if(cardIndex > 0) {
       setCardIndex(cardIndex - 1);
       setIsFlipped(false);
+      textBox.classList.remove("wrong");
+      textBox.classList.remove("correct");
+      setInputText("");
     }
   };
 
@@ -37,8 +43,27 @@ const App = () => {
     if(cardIndex < cardsArray.length - 1) {
       setCardIndex(cardIndex + 1);
       setIsFlipped(false);
+      textBox.classList.remove("wrong");
+      textBox.classList.remove("correct");
+      setInputText("");
     }
   };
+
+  var textBox = document.getElementById('textBox');
+
+  const handleInput = () => {
+
+    if(inputText != cardsArray[cardIndex].back){
+          setInputText("Wrong!");
+          textBox.className = "wrong";
+    } else {
+      setInputText("Correct!");
+      textBox.className = "correct";
+    }
+  };
+
+
+
 
   const cardsArray = [
     {
@@ -80,11 +105,16 @@ const App = () => {
             onClick={() => setIsFlipped(!isFlipped)}
             front={cardsArray[cardIndex].front}
             back={cardsArray[cardIndex].back}
+            input={inputText}
             />
             </div>
+            <input type="text" id='textBox' value={inputText} onChange={(e) => setInputText(e.target.value)}/>
             </div>
         <button id='leftArrow' onClick={prevCard}>Previous Card</button>
         <button id='rightArrow' onClick={nextCard}>Next Card</button>
+        <div className="inputSubmitBox">
+        <button id='submit' type='submit' onClick={handleInput}>Submit Your Answer</button>
+        </div>
       </div>
     </div>
   )

@@ -79,7 +79,7 @@ button{
   padding: 10px 20px;
   border-radius: 15px;
   cursor: pointer;
-  margin: 10px 20px;
+  margin: 40px 20px 0px 10px;
 }
 
 button:hover {
@@ -98,3 +98,21 @@ box-shadow: 0 0 30px rgb(5, 174, 216);
 .cards.flipped .cards-back {
   display: block;
 }
+
+#textBox {
+  margin: 10px;
+}
+
+.inputSubmitBox{
+  display: flex;
+  justify-content: center;
+}
+
+.wrong{
+  border: 5px solid red;
+}
+
+.correct{
+  border: 5px solid green;
+}
+
